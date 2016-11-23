@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> </head>
+
+<body ng-controller="RowCtrl as Row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 container">
+                <h1>Фільтрація і сортування</h1>
+                <input type="text" class="filter form-control" placeholder="Search">
+                <div class="popUpAdd">
+                    <input type="text" class="form-control" placeholder="Name..." ng-model="Row.newNameRow">
+                    <input type="text" class="form-control" placeholder="Inf..." ng-model="Row.newInf">
+                    <input type="text" class="form-control" placeholder="Numb..." ng-model="Row.newNumb">
+                    <input type="button" class="btn btn-success btn-xs" value="add" ng-click="Row.addRow()"> </div>
+                <div class="row border">
+                    <div class="col-md-3 bold" ng-click="Row.sortRowName()"> <span>Name</span> </div>
+                    <div class="col-md-3 bold" ng-click="Row.sortRowInf()"> <span>Type</span> </div>
+                    <div class="col-md-3 bold"> <span>Number</span> </div>
+                    <div class="col-md-3 bold">
+                        <input type="button" class="btn btn-success btn-xs" value="Add" ng-click="Row.add()"> </div>
+                </div>
+                <div class="row">
+                    <ul class="live__filter">
+                        <li ng-repeat="key in Row.data.row | orderBy: Row.sort">
+                            <div class="col-md-3"> <span>{{key.nameRow}}</span> </div>
+                            <div class="col-md-3"> <span>{{key.inf}}</span> </div>
+                            <div class="col-md-3"> <span>{{key.numb}}</span> </div>
+                            <div class="col-md-3">
+                                <input type="button" class="btn btn-info btn-xs" value="Edit" ng-click="Row.editRow(key)">
+                                <input type="button" class="btn btn-danger btn-xs" value="Delete" ng-click="Row.removeRow(key)"> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="edit">
+                <input type="text" class="form-control" placeholder="New name..." ng-model="Row.editName">
+                <input type="text" class="form-control" placeholder="New inf..." ng-model="Row.editInf">
+                <input type="text" class="form-control" placeholder="New numb..." ng-model="Row.editNumb">
+                <input type="button" class="btn btn-success btn-block" value="Save" ng-click="Row.saveEdit()"> </div>
+        </div>
+    </div>
+    <div class="bg"></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="js/jquery.liveFilter.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
